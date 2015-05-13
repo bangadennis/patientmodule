@@ -18,8 +18,10 @@
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<!-- Add here beans related to the API context -->
+	<!--<bean id="hibernatePatientModuleDAO" class="org.openmrs.module.patientmodule.api.db.hibernate.HibernatePatientModuleDAO" />-->
+	<!--<bean id="patientModuleServiceImpl" class="org.openmrs.module.patientmodule.api.impl.PatientModuleServiceImpl" />-->
 
-	
+
 	<!-- Services accessible via Context.getService() -->
 	<bean parent="serviceContext">
 		<property name="moduleService">
@@ -51,5 +53,5 @@
 			</list>
 		</property>
 	</bean>
-	
+
 </beans>

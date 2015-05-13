@@ -26,6 +26,10 @@ public class PatientModule extends BaseOpenmrsObject implements Serializable {
 	
 	private Integer nationalId;
 
+	private String country;
+
+	private String spouse;
+
 	public String getCountry() {
 		return country;
 	}
@@ -50,8 +54,6 @@ public class PatientModule extends BaseOpenmrsObject implements Serializable {
 		this.spouse = spouse;
 	}
 
-	private String country;
-	private String spouse;
 	
 	@Override
 	public Integer getId() {

@@ -21,12 +21,15 @@
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 	<!-- Add here beans related to the web context -->
+	<!--<bean id="hibernatePatientModuleDAO" class="org.openmrs.module.patientmodule.api.db.hibernate.HibernatePatientModuleDAO" />-->
+	<!--<bean id="patientModuleServiceImpl" class="org.openmrs.module.patientmodule.api.impl.PatientModuleServiceImpl" />-->
 
-	 
+
 	<!-- Annotation based controllers -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 	
 	<context:component-scan base-package="org.openmrs.module.patientmodule.web.controller" />
- 
-		
+
+
+
 </beans>

@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -41,7 +42,7 @@ public class  PatientModuleManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	@RequestMapping(value = "/module/patientmodule/manage", method = RequestMethod.GET)
+	@RequestMapping(value = "/module/patientmodule/manage", method=RequestMethod.GET)
 	public void manage(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
         List<Patient> patientList = Context.getPatientService().getAllPatients();
@@ -49,32 +50,7 @@ public class  PatientModuleManageController {
 
 	}
 
-	@RequestMapping(value = "/module/patientmodule/addPatientModule.form", method = RequestMethod.POST)
-	public String submitPatientModule(WebRequest request, HttpSession httpSession, ModelMap model,
-								   @RequestParam(required = false, value = "action") String action,
-								   @ModelAttribute("patientModule") PatientModule patientModule, BindingResult errors) {
 
-		MessageSourceService mss = Context.getMessageSourceService();
-        model.addAttribute("hello", "");
-		PatientModuleService patientModuleService = Context.getService(PatientModuleService.class);
-		if (!Context.isAuthenticated()) {
-			errors.reject("patientModule.auth.required");
-		} else if (mss.getMessage("patientModule.purgePatientModule").equals(action)) {
-            try {
-                patientModuleService.purgePatientModule(patientModule);
-				httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "patientModule.delete.success");
-				return "redirect:patientModuleList.list";
-			}
-			catch (Exception ex) {
-				httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "patientModule.delete.failure");
-				log.error("Failed to delete patientModule", ex);
-				return "redirect:patientModuleForm.form?nationalId=" + request.getParameter("nationalId");
-            }
-        } else {
-            patientModuleService.savePatient(patientModule);
-			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "patientModule.saved");
-		}
-		return "redirect:patientModuleList.list";
-	}
+
 
 }

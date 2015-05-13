@@ -18,7 +18,7 @@
 -->
 
 	<class name="PatientModule"
-		   table="${project.parent.artifactId}_PatientModule">
+		   table="${project.parent.artifactId}_patientmodule">
 		<id name="nationalId" type="int" column="national_id" unsaved-value="0">
 			<generator class="native" />
 		</id>

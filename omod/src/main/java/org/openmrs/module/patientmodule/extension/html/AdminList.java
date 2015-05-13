@@ -38,13 +38,14 @@ public class AdminList extends AdministrationSectionExt {
 	public String getTitle() {
 		return "patientmodule.title";
 	}
-	
 	/**
 	 * @see AdministrationSectionExt#getLinks()
 	 */
 	public Map<String, String> getLinks() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("/module/patientmodule/manage.form", "patientmodule.manage");
+		map.put("/module/patientmodule/displaydata.form", "Display Patients");
+		map.put("/module/patientmodule/addpatient.form", "Add Patient");
 		return map;
 	}
 	
