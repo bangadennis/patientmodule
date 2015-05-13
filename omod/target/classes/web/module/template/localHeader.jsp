@@ -8,7 +8,22 @@
 		<c:if test='<%= request.getRequestURI().contains("/manage") %>'>class="active"</c:if>>
 		<a
 		href="${pageContext.request.contextPath}/module/patientmodule/manage.form"><spring:message
-				code="patientmodule.manage" /></a>
+				code="List Patients" /></a>
+	</li>
+
+	<li
+			<c:if test='<%= request.getRequestURI().contains("/displaydata") %>'>class="active"</c:if>>
+		<a
+				href="${pageContext.request.contextPath}/module/patientmodule/displaydata.form"><spring:message
+				code="Display Data" /></a>
+	</li>
+
+
+	<li
+			<c:if test='<%= request.getRequestURI().contains("/addpatient") %>'>class="active"</c:if>>
+		<a
+				href="${pageContext.request.contextPath}/module/patientmodule/addpatient.form"><spring:message
+				code="Add Patient" /></a>
 	</li>
 	
 	<!-- Add further links here -->

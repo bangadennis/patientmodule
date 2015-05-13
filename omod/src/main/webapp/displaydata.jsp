@@ -1,11 +1,10 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
-<link href="<c:url value="/res/bootstrap.min.css" />" rel="stylesheet">
 <%@ include file="template/localHeader.jsp"%>
 <openmrs:htmlInclude file="/res/bootstrap.min.css" />
 
 <h3>Patient's Next of Kin</h3>
-    <table class="table table-bordered">
+    <table class="table table-striped table-responsive table-hover">
     <thead>
     <tr>
         <th>National ID</th>

@@ -42,7 +42,7 @@ public class  PatientModuleManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	@RequestMapping(value = "/module/patientmodule/manage", method=RequestMethod.GET)
+	@RequestMapping(value = "/module/patientmodule/manage.form", method=RequestMethod.GET)
 	public void manage(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
         List<Patient> patientList = Context.getPatientService().getAllPatients();

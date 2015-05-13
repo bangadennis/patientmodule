@@ -1,39 +1,38 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
+<openmrs:htmlInclude file="/res/bootstrap.min.css" />
 <%@ include file="template/localHeader.jsp"%>
-<p>Welcome, ${user.systemId}!</p>
-<div>
-    <form method="post"  action="<c:url value='/module/patientmodule/add.form' />">
-    <fieldset>
-    <table>
-    <tr>
-    <td><openmrs:message code="Country"/></td>
-    <td>
+<div class="row">
+    <p>Welcome, ${user.systemId}!</p>
+    <div class="jumbotron col-md-6 col-md-offset-3">
+    <h5 class="text-center">Next of Kin Form</h5>
+    <div class="form-group col-md-offset-2 col-md-8">
+    <form class="" method="post"  action="<c:url value='/module/patientmodule/add.form' />">
+
+    <label><openmrs:message code="Country"/></label>
+    <br>
     <spring:bind path="patientmodule.country">
-    <input type="text" name="country" value="${status.value}" size="35" />
+    <input type="text" class="form-control" name="country" value="${status.value}" size="35" required />
     <c:if test="${status.errorMessage != ''}"><span class="error">${status.errorMessage}</span></c:if>
     </spring:bind>
-    </td>
-    </tr>
-    <tr>
-    <td valign="top"><openmrs:message code="Spouse"/></td>
-    <td valign="top">
+        <br/>
+    <label valign="top"><openmrs:message code="Spouse"/></label>
+        <br>
     <spring:bind path="patientmodule.spouse">
-    <input type="text" name="spouse" value="${status.value}" size="35" />
+    <input type="text" name="spouse" class="form-control" value="${status.value}" size="35" required/>
     <c:if test="${status.errorMessage != ''}"><span class="error">${status.errorMessage}</span></c:if>
     </spring:bind>
-    </td>
-    </tr>
-    </table>
+
     <br />
-    <input type="submit" value="<openmrs:message code="Save"/>" name="save">
-    </fieldset>
+    <input type="submit" class="btn btn-md btn-success" value="<openmrs:message code="Save"/>" name="save">
     </form>
 </div>
+</div>
 
-<div>
-    <h3>Patient's Next of KIN</h3>
-    <table class="table table-bordered">
+<div class="col-md-12">
+    <br>
+    <h4>Patient's Next of KIN</h4>
+    <table class="table table-striped table-responsive table-hover">
         <thead>
         <tr>
             <th>National Id</th>
@@ -53,5 +52,5 @@
     </table>
 
 </div>
-
+</div>
 <%@ include file="/WEB-INF/template/footer.jsp"%>

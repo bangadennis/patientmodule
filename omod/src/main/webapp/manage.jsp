@@ -1,12 +1,10 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
-<%@ include file="/WEB-INF/template/header.jsp"%>
-
+<%@ include file="/WEB-INF/template/header.jsp" %>
 <%@ include file="template/localHeader.jsp"%>
 
 <p>Welcome, ${user.systemId}!</p>
 
-
-<table id="myTable">
+<table class="table table-bordered table-responsive table-hover">
     <thead>
     <tr>
         <th>Name</th>
@@ -27,3 +25,5 @@
     </c:forEach>
     </tbody>
 </table>
+
+<%@ include file="/WEB-INF/template/footer.jsp"%>
