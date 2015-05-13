@@ -16,7 +16,10 @@ package org.openmrs.module.patientmodule.api.db.hibernate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
+import org.openmrs.module.patientmodule.PatientModule;
 import org.openmrs.module.patientmodule.api.db.PatientModuleDAO;
+
+import java.util.List;
 
 /**
  * It is a default implementation of  {@link PatientModuleDAO}.
@@ -38,5 +41,28 @@ public class HibernatePatientModuleDAO implements PatientModuleDAO {
      */
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
+    }
+
+    @Override
+    public List<PatientModule> getAllPatients() {
+
+        return sessionFactory.getCurrentSession().createCriteria(PatientModule.class).list();
+    }
+
+    @Override
+    public PatientModule getPatient(Integer nationalId) {
+        return (PatientModule)sessionFactory.getCurrentSession().get(PatientModule.class, nationalId);
+    }
+
+    @Override
+    public PatientModule savePatient(PatientModule patientModule) {
+        sessionFactory.getCurrentSession().save(patientModule);
+        return patientModule;
+    }
+
+    @Override
+    public void purgePatientModule(PatientModule patientModule) {
+        sessionFactory.getCurrentSession().delete(patientModule);
+
     }
 }

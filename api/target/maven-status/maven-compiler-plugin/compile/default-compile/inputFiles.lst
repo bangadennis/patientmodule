@@ -1,0 +1,6 @@
+/home/banga/IdeaProjects/openmrs-dev/patientmodule/api/src/main/java/org/openmrs/module/patientmodule/PatientModule.java
+/home/banga/IdeaProjects/openmrs-dev/patientmodule/api/src/main/java/org/openmrs/module/patientmodule/api/db/PatientModuleDAO.java
+/home/banga/IdeaProjects/openmrs-dev/patientmodule/api/src/main/java/org/openmrs/module/patientmodule/api/PatientModuleService.java
+/home/banga/IdeaProjects/openmrs-dev/patientmodule/api/src/main/java/org/openmrs/module/patientmodule/api/db/hibernate/HibernatePatientModuleDAO.java
+/home/banga/IdeaProjects/openmrs-dev/patientmodule/api/src/main/java/org/openmrs/module/patientmodule/api/impl/PatientModuleServiceImpl.java
+/home/banga/IdeaProjects/openmrs-dev/patientmodule/api/src/main/java/org/openmrs/module/patientmodule/PatientModuleActivator.java

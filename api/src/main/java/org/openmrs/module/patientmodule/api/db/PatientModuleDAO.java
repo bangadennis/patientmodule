@@ -13,14 +13,35 @@
  */
 package org.openmrs.module.patientmodule.api.db;
 
+import org.openmrs.module.patientmodule.PatientModule;
 import org.openmrs.module.patientmodule.api.PatientModuleService;
+
+import java.util.List;
 
 /**
  *  Database methods for {@link PatientModuleService}.
  */
 public interface PatientModuleDAO {
-	
-	/*
-	 * Add DAO methods here
+
+	/**
+	 * @see org.openmrs.module.patientmodule.api.PatientModuleService#getAllPatients()
 	 */
+	List<PatientModule> getAllPatients();
+
+	/**
+	 * @see org.openmrs.module.patientmodule.api.PatientModuleService#getPatient()
+	 */
+
+	PatientModule getPatient(Integer nationalId);
+
+	/**
+	 * @see org.openmrs.module.patientmodule.api.PatientModuleService#savePatient
+	 */
+	PatientModule savePatient(PatientModule patientModule);
+
+
+	/**
+	 * @see org.openmrs.module.patientmodule.api.PatientModuleService#purgePatientModule(org.openmrs.module.patientmodule.api.PatientModuleService)
+	 */
+	void purgePatientModule(PatientModule patientModule);
 }

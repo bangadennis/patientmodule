@@ -17,4 +17,15 @@
 	</class>
 -->
 
+	<class name="PatientModule"
+		   table="${project.parent.artifactId}_PatientModule">
+		<id name="nationalId" type="int" column="national_id" unsaved-value="0">
+			<generator class="native" />
+		</id>
+		<discriminator column="national_id" insert="false" />
+		<property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true" />
+		<property name="country" type="java.lang.String" column="country" length="255" unique="true" />
+		<property name="spouse" type="java.lang.String" column="spouse" length="255" />
+	</class>
+
 </hibernate-mapping>

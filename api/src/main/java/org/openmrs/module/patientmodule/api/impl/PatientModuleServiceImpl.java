@@ -16,8 +16,11 @@ package org.openmrs.module.patientmodule.api.impl;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.module.patientmodule.PatientModule;
 import org.openmrs.module.patientmodule.api.PatientModuleService;
 import org.openmrs.module.patientmodule.api.db.PatientModuleDAO;
+
+import java.util.List;
 
 /**
  * It is a default implementation of {@link PatientModuleService}.
@@ -40,5 +43,25 @@ public class PatientModuleServiceImpl extends BaseOpenmrsService implements Pati
      */
     public PatientModuleDAO getDao() {
 	    return dao;
+    }
+
+    @Override
+    public List<PatientModule> getAllPatients() {
+        return dao.getAllPatients();
+    }
+
+    @Override
+    public PatientModule getPatient(Integer nationalId) {
+        return dao.getPatient(nationalId);
+    }
+
+    @Override
+    public PatientModule savePatient(PatientModule patientModule) {
+        return dao.savePatient(patientModule);
+    }
+
+    @Override
+    public void purgePatientModule(PatientModule patientModule) {
+        dao.purgePatientModule(patientModule);
     }
 }

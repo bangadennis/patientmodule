@@ -24,16 +24,43 @@ public class PatientModule extends BaseOpenmrsObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	private Integer nationalId;
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public Integer getNationalId() {
+		return nationalId;
+	}
+
+	public void setNationalId(Integer nationalId) {
+		this.nationalId = nationalId;
+	}
+
+	public String getSpouse() {
+		return spouse;
+	}
+
+	public void setSpouse(String spouse) {
+		this.spouse = spouse;
+	}
+
+	private String country;
+	private String spouse;
 	
 	@Override
 	public Integer getId() {
-		return id;
+		return getNationalId();
 	}
 	
 	@Override
 	public void setId(Integer id) {
-		this.id = id;
+		setNationalId(id);
 	}
 	
 }
