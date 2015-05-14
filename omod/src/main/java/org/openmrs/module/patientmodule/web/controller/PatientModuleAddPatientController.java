@@ -31,6 +31,7 @@ public class PatientModuleAddPatientController {
 
     @RequestMapping(value = "/module/patientmodule/addpatient.form",method=RequestMethod.GET)
     public void addpatientForm(ModelMap model) {
+
         PatientModuleService patientModuleService = Context.getService(PatientModuleService.class);
         model.addAttribute("user", Context.getAuthenticatedUser());
         List<PatientModule> patientList=patientModuleService.getAllPatients();
@@ -51,18 +52,22 @@ public class PatientModuleAddPatientController {
         PatientModuleService patientModuleService = Context.getService(PatientModuleService.class);
         if (!Context.isAuthenticated()) {
             errors.reject("patientModule.auth.required");
+
         } else if (mss.getMessage("patientmodule.purgePatientModule").equals(action)) {
             try {
+
                 patientModuleService.purgePatientModule(patientModule);
                 httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Patient Deleted successfully");
                 return "redirect:patientmodulelist.list";
             }
             catch (Exception ex) {
+
                 httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Delete failure");
                 log.error("Failed to delete patientModule", ex);
                 return "redirect:patientmoduleform.form?nationalId=" + request.getParameter("nationalId");
             }
         } else {
+
             patientModuleService.savePatient(patientModule);
             httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Added Successfully");
         }

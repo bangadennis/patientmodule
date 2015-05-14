@@ -2,3 +2,4 @@
 /home/banga/IdeaProjects/openmrs-dev/patientmodule/omod/src/main/java/org/openmrs/module/patientmodule/extension/html/AdminList.java
 /home/banga/IdeaProjects/openmrs-dev/patientmodule/omod/src/main/java/org/openmrs/module/patientmodule/web/controller/PatientModuleAddPatientController.java
 /home/banga/IdeaProjects/openmrs-dev/patientmodule/omod/src/main/java/org/openmrs/module/patientmodule/web/controller/PatientModuleDisplayController.java
+/home/banga/IdeaProjects/openmrs-dev/patientmodule/omod/src/main/java/org/openmrs/module/patientmodule/page/controller/HelloWorldPageController.java

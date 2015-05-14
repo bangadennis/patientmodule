@@ -29,28 +29,5 @@
 </div>
 </div>
 
-<div class="col-md-12">
-    <br>
-    <h4>Patient's Next of KIN</h4>
-    <table class="table table-striped table-responsive table-hover">
-        <thead>
-        <tr>
-            <th>National Id</th>
-            <th>Spouse</th>
-            <th>Country</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="patient" items="${patientList}" varStatus="status">
-            <tr>
-                <td>${patient.nationalId}</td>
-                <td>${patient.spouse}</td>
-                <td>${patient.country}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-
-</div>
 </div>
 <%@ include file="/WEB-INF/template/footer.jsp"%>

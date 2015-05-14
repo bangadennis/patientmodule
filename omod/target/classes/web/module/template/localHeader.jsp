@@ -28,6 +28,6 @@
 	
 	<!-- Add further links here -->
 </ul>
-<h2>
-	<spring:message code="patientmodule.title" />
-</h2>
+<h4>
+	<spring:message code="Patient's Kin" />
+</h4>

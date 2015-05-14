@@ -96,6 +96,15 @@
 			</dependency>
 						
 			<!-- End OpenMRS core -->
+			<!-- Depends on uiframework module -->
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>uiframework-api</artifactId>
+				<version>3.4-SNAPSHOT</version>
+				<type>jar</type>
+				<scope>provided</scope>
+			</dependency>
+
 
 		</dependencies>
 	</dependencyManagement>
