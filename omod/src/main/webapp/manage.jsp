@@ -4,14 +4,16 @@
 
 <p>Welcome, ${user.systemId}!</p>
 
+
 <table class="table table-bordered table-responsive table-hover">
     <thead>
     <tr>
-        <th>Last Name</th>
-        <th>middle Name</th>
+        <th>First Name</th>
+        <th>Middle Name</th>
         <th>Age</th>
         <th>Gender</th>
-        <th>middleName</th>
+        <th>Delete</th>
+        <th>Edit</th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +23,12 @@
             <td>${patient.middleName}</td>
             <td>${patient.age}</td>
             <td>${patient.gender}</td>
+            <td><a href="<c:url value='/module/patientmodule/delete.form?id=${patient.patientId}' />">
+            <button><span class="glyphicon glyphicon-remove-sign">Delete<span></span> </button>
+            </a> </td>
+            <td><a href="<c:url value='/module/patientmodule/edit.form?id=${patient.patientId}' />">
+                <button><span class="glyphicon glyphicon-edit">Edit<span></span> </button>
+            </a> </td>
 
         </tr>
     </c:forEach>
