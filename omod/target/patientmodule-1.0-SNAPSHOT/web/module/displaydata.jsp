@@ -3,7 +3,7 @@
 <%@ include file="template/localHeader.jsp"%>
 <openmrs:htmlInclude file="/res/bootstrap.min.css" />
 
-<h3>Patient's Next of Kin</h3>
+<h3>Patientn</h3>
     <table class="table table-striped table-responsive table-hover">
     <thead>
     <tr>

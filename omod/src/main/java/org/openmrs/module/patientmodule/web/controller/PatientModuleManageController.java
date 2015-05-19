@@ -20,6 +20,7 @@ import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
 import org.openmrs.messagesource.MessageSourceService;
+import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.patientmodule.PatientModule;
 import org.openmrs.module.patientmodule.api.PatientModuleService;
 import org.openmrs.web.WebConstants;
@@ -160,17 +161,19 @@ public class  PatientModuleManageController {
 			patient.setBirthdate(dateofbirth);
 
 			//create a patient Identifer
-			PatientIdentifier patientIdentifier = new PatientIdentifier();
+			PatientIdentifier openmrsId = new PatientIdentifier();
 
-			patientIdentifier.setIdentifierType(patientService.getPatientIdentifierTypeByUuid("05ee9cf4-7242-4a17-b4d4-00f707265c8a"));
-			patientIdentifier.setDateCreated(new Date());
-			patientIdentifier.setVoided(false);
-			patientIdentifier.setPreferred(true);
-			patientIdentifier.setIdentifier("dennis");
+			PatientIdentifierType openmrsIdType = patientService.getPatientIdentifierTypeByUuid("dfacd928-0370-4315-99d7-6ec1c9f7ae76");
+			String generated = Context.getService(IdentifierSourceService.class).generateIdentifier(openmrsIdType, "patientmodule");
+			openmrsId.setIdentifierType(openmrsIdType);
+			openmrsId.setDateCreated(new Date());
+			openmrsId.setLocation(Context.getLocationService().getDefaultLocation());
+			openmrsId.setIdentifier(generated);
+			openmrsId.setVoided(false);
 
-			patient.addIdentifier(patientIdentifier);
-
-			if (!patientService.isIdentifierInUseByAnotherPatient(patientIdentifier)) {
+			patient.addIdentifier(openmrsId);
+			//saving the patient
+			if (!patientService.isIdentifierInUseByAnotherPatient(openmrsId)) {
 				patientService.savePatient(patient);
 			}
 

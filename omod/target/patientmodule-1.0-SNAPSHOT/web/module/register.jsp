@@ -3,7 +3,7 @@
 <%@ include file="template/localHeader.jsp"%>
 <p>Hello, ${user.systemId}!</p>
 <div class="row">
-    <div class="jumbotron col-md-6 col-md-offset-3">
+    <div class="jumbotron col-md-4 col-md-offset-4">
         <h2 class="text-center">Registration</h2>
         <div class="form-group col-md-offset-2 col-md-8">
             <form class="" method="post"  action="<c:url value='/module/patientmodule/registerpatient.form' />">

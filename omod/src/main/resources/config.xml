@@ -54,5 +54,9 @@
 		<require_module>org.openmrs.module.uiframework</require_module>
 	</require_modules>
 
+	<require_modules>
+		<require_module version="${idgenVersion}">org.openmrs.module.idgen</require_module>
+	</require_modules>
+
 </module>
 

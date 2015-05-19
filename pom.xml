@@ -105,6 +105,13 @@
 				<scope>provided</scope>
 			</dependency>
 
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>idgen-api</artifactId>
+				<version>2.6</version>
+				<type>jar</type>
+				<scope>provided</scope>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>
