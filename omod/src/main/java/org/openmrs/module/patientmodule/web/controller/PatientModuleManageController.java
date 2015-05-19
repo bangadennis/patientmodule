@@ -17,7 +17,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
 import org.openmrs.PatientIdentifier;
+import org.openmrs.Person;
 import org.openmrs.PersonName;
+import org.openmrs.api.PatientService;
+import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
 import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.module.patientmodule.PatientModule;
@@ -83,7 +86,7 @@ public class  PatientModuleManageController {
 		try {
 			Patient patient = Context.getPatientService().getPatient(patientId);
 			model.addAttribute("user", Context.getAuthenticatedUser());
-			model.addAttribute("patient",patient);
+			model.addAttribute("patient", patient);
 		}
 		catch (Exception ex)
 		{
@@ -106,13 +109,16 @@ public class  PatientModuleManageController {
 
 			Patient patient = Context.getPatientService().getPatient(patientId);
 			PersonName personName=new PersonName();
+			//Removing Person Name
+			patient.removeName(patient.getPersonName());
+			//Add a new perso
 			personName.setGivenName(fname);
-			personName.setMiddleName(middleName);
+			personName.setFamilyName(middleName);
 			patient.addName(personName);
 			patient.setGender(gender);
 			patient.setBirthdate(dob);
 			Context.getPatientService().savePatient(patient);
-			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Editted Successfully");
+			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Edited Successfully");
 			return "redirect:manage.form";
 		}
 		catch (Exception ex)
@@ -125,6 +131,53 @@ public class  PatientModuleManageController {
 		//return "redirect:manage.form";
 	}
 
+	@RequestMapping(value = "/module/patientmodule/register.form", method=RequestMethod.GET)
+	public void registerform(ModelMap model) {
+		model.addAttribute("user", Context.getAuthenticatedUser());
+	}
+	//method for adding a patient
+	@RequestMapping(value = "/module/patientmodule/registerpatient.form", method=RequestMethod.POST)
+	public String  registerpatient(ModelMap model, WebRequest webRequest, HttpSession httpSession,
+						@RequestParam(value = "givenName", required = true) String givenName,
+						@RequestParam(value = "familyName", required = true) String familyName,
+						@RequestParam(value = "middleName", required = true) String middleName,
+						@RequestParam(value = "dateofbirth", required = true) Date dateofbirth,
+						@RequestParam(value = "gender", required = true) String gender) {
+		try {
+
+			//creating the services
+			PatientService patientService=Context.getPatientService();
+			PersonService personService=Context.getPersonService();
+
+			Patient patient=new Patient();
+			PersonName personName = new PersonName();
+
+			//adding the names
+			personName.setGivenName(givenName);
+			personName.setFamilyName(familyName);
+			personName.setMiddleName(middleName);
+
+			patient.addName(personName);
+
+			patient.setGender(gender);
+			patient.setBirthdate(dateofbirth);
+
+			PatientIdentifier patientIdentifier = new PatientIdentifier();
+
+
+			patientService.savePatient(patient);
+			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Registered Successfully");
+			return "redirect:register.form";
+		}
+		catch (Exception ex)
+		{
+			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Registration failed");
+			return "redirect:register.form";
+
+		}
+
+		//return "redirect:manage.form";
+	}
 
 
 
