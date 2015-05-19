@@ -36,7 +36,7 @@ public class AdminList extends AdministrationSectionExt {
 	 * @see AdministrationSectionExt#getTitle()
 	 */
 	public String getTitle() {
-		return "Patient's Kin";
+		return "Learning Module";
 	}
 	/**
 	 * @see AdministrationSectionExt#getLinks()
@@ -45,7 +45,8 @@ public class AdminList extends AdministrationSectionExt {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("/module/patientmodule/manage.form", "List Patients");
 		map.put("/module/patientmodule/displaydata.form", "Display Kin's Data");
-		map.put("/module/patientmodule/addpatient.form", "Add Patient");
+		map.put("/module/patientmodule/addpatient.form", "Add Next of Kin");
+		map.put("/module/patientmodule/register.form", "Register Patient");
 		return map;
 	}
 	
