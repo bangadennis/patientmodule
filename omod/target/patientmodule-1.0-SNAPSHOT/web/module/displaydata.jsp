@@ -1,9 +1,8 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
-<openmrs:htmlInclude file="/res/bootstrap.min.css" />
 
-<h3>Patientn</h3>
+<h3>Patient Details</h3>
     <table class="table table-striped table-responsive table-hover">
     <thead>
     <tr>
