@@ -25,7 +25,7 @@
 	<!--<bean id="patientModuleServiceImpl" class="org.openmrs.module.patientmodule.api.impl.PatientModuleServiceImpl" />-->
 
 	<bean class="org.openmrs.ui.framework.StandardModuleUiConfiguration">
-		<property name="moduleId" value="uiframework"/>
+		<property name="moduleId" value="patientmodule"/>
 	</bean>
 
 	<!-- Annotation based controllers -->
