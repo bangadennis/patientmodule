@@ -15,10 +15,7 @@ package org.openmrs.module.patientmodule.web.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.Patient;
-import org.openmrs.PatientIdentifier;
-import org.openmrs.Person;
-import org.openmrs.PersonName;
+import org.openmrs.*;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
@@ -111,7 +108,7 @@ public class  PatientModuleManageController {
 			PersonName personName=new PersonName();
 			//Removing Person Name
 			patient.removeName(patient.getPersonName());
-			//Add a new perso
+			//Add a new personName
 			personName.setGivenName(fname);
 			personName.setFamilyName(middleName);
 			patient.addName(personName);
@@ -162,10 +159,21 @@ public class  PatientModuleManageController {
 			patient.setGender(gender);
 			patient.setBirthdate(dateofbirth);
 
+			//create a patient Identifer
 			PatientIdentifier patientIdentifier = new PatientIdentifier();
 
+			patientIdentifier.setIdentifierType(patientService.getPatientIdentifierTypeByUuid("05ee9cf4-7242-4a17-b4d4-00f707265c8a"));
+			patientIdentifier.setDateCreated(new Date());
+			patientIdentifier.setVoided(false);
+			patientIdentifier.setPreferred(true);
+			patientIdentifier.setIdentifier("dennis");
 
-			patientService.savePatient(patient);
+			patient.addIdentifier(patientIdentifier);
+
+			if (!patientService.isIdentifierInUseByAnotherPatient(patientIdentifier)) {
+				patientService.savePatient(patient);
+			}
+
 			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Registered Successfully");
 			return "redirect:register.form";
 		}
