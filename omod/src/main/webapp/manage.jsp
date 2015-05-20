@@ -2,6 +2,7 @@
 <%@ include file="/WEB-INF/template/header.jsp" %>
 <%@ include file="template/localHeader.jsp"%>
 
+
 <p>Welcome, ${user.systemId}!</p>
 
 

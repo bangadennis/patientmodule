@@ -1,6 +1,7 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
-<openmrs:htmlInclude file="/res/bootstrap.min.css" />
+
+
 <%@ include file="template/localHeader.jsp"%>
 <div class="row">
     <p>Welcome, ${user.systemId}!</p>

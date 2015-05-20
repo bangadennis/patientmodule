@@ -23,7 +23,7 @@
                 <label>Family Name</label>
                 <br>
                 <input type="text" class="form-control" name="familyName" value="" size="35" required />
-                <br>
+                <br/>
                 <label>Date of Birth</label>
                 <br>
                 <input type="text" class="form-control" name="dateofbirth" value="" size="35" required />
