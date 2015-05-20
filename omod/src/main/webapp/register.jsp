@@ -8,6 +8,10 @@
         <div class="form-group col-md-offset-2 col-md-8">
             <form class="" method="post"  action="<c:url value='/module/patientmodule/registerpatient.form' />">
 
+                <label>National ID</label>
+                <br>
+                <input type="text" class="form-control" name="nationalId" value="" size="12" required />
+                <br/>
                 <label>First Name</label>
                 <br>
                 <input type="text" class="form-control" name="givenName" value="" size="35" required />
@@ -30,6 +34,7 @@
                     <option value="F">Female</option>
                 </select>
                 <br/>
+
                 <input type="submit" class="btn btn-success" value="Register">
         </form>
     </div>
