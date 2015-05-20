@@ -169,12 +169,12 @@ public class  PatientModuleManageController {
             String TARGET_ID_KEY = "patientmodule.idType";
             String TARGET_ID = Context.getAdministrationService().getGlobalProperty(TARGET_ID_KEY);
 
-			PatientIdentifierType openmrsIdType = patientService.getPatientIdentifierTypeByName(TARGET_ID);
+			PatientIdentifierType patientIdentifierType = patientService.getPatientIdentifierTypeByName(TARGET_ID);
 
             openmrsId.setIdentifier(nationalId);
             openmrsId.setDateCreated(new Date());
             openmrsId.setLocation(Context.getLocationService().getDefaultLocation());
-            openmrsId.setIdentifierType(openmrsIdType);
+            openmrsId.setIdentifierType(patientIdentifierType);
 
 
             PatientIdentifierValidator.validateIdentifier(openmrsId);
