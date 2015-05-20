@@ -23,6 +23,7 @@ import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.patientmodule.PatientModule;
 import org.openmrs.module.patientmodule.api.PatientModuleService;
+import org.openmrs.validator.PatientIdentifierValidator;
 import org.openmrs.web.WebConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -140,7 +141,9 @@ public class  PatientModuleManageController {
 						@RequestParam(value = "familyName", required = true) String familyName,
 						@RequestParam(value = "middleName", required = true) String middleName,
 						@RequestParam(value = "dateofbirth", required = true) Date dateofbirth,
-						@RequestParam(value = "gender", required = true) String gender) {
+						@RequestParam(value = "gender", required = true) String gender,
+                        @RequestParam(value = "nationalId", required = true) String nationalId)
+    {
 		try {
 
 			//creating the services
@@ -163,14 +166,18 @@ public class  PatientModuleManageController {
 			//create a patient Identifer
 			PatientIdentifier openmrsId = new PatientIdentifier();
 
-			PatientIdentifierType openmrsIdType = patientService.getPatientIdentifierTypeByUuid("dfacd928-0370-4315-99d7-6ec1c9f7ae76");
-			String generated = Context.getService(IdentifierSourceService.class).generateIdentifier(openmrsIdType, "patientmodule");
-			openmrsId.setIdentifierType(openmrsIdType);
-			openmrsId.setDateCreated(new Date());
-			openmrsId.setLocation(Context.getLocationService().getDefaultLocation());
-			openmrsId.setIdentifier(generated);
-			openmrsId.setVoided(false);
+            String TARGET_ID_KEY = "patientmodule.idType";
+            String TARGET_ID = Context.getAdministrationService().getGlobalProperty(TARGET_ID_KEY);
 
+			PatientIdentifierType openmrsIdType = patientService.getPatientIdentifierTypeByName(TARGET_ID);
+
+            openmrsId.setIdentifier(nationalId);
+            openmrsId.setDateCreated(new Date());
+            openmrsId.setLocation(Context.getLocationService().getDefaultLocation());
+            openmrsId.setIdentifierType(openmrsIdType);
+
+
+            PatientIdentifierValidator.validateIdentifier(openmrsId);
 			patient.addIdentifier(openmrsId);
 			//saving the patient
 			if (!patientService.isIdentifierInUseByAnotherPatient(openmrsId)) {
@@ -182,7 +189,7 @@ public class  PatientModuleManageController {
 		}
 		catch (Exception ex)
 		{
-			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Registration failed");
+			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Registration failed-Patient Id taken");
 			return "redirect:register.form";
 
 		}
