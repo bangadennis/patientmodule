@@ -1,6 +1,0 @@
-org/openmrs/module/patientmodule/api/db/PatientModuleDAO.class
-org/openmrs/module/patientmodule/api/db/hibernate/HibernatePatientModuleDAO.class
-org/openmrs/module/patientmodule/api/PatientModuleService.class
-org/openmrs/module/patientmodule/PatientModuleActivator.class
-org/openmrs/module/patientmodule/api/impl/PatientModuleServiceImpl.class
-org/openmrs/module/patientmodule/PatientModule.class

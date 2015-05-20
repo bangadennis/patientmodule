@@ -1,6 +1,0 @@
-org/openmrs/module/patientmodule/web/controller/PatientModuleAddPatientController.class
-org/openmrs/module/patientmodule/extension/html/AdminList.class
-org/openmrs/module/patientmodule/web/controller/PatientModuleDisplayController.class
-org/openmrs/module/patientmodule/web/controller/PatientModuleManageController.class
-org/openmrs/module/patientmodule/fragment/controller/EncountersTodayFragmentController.class
-org/openmrs/module/patientmodule/page/controller/HelloWorldPageController.class

@@ -1,7 +1,7 @@
 Hello World Kenyans<b>Java</b>
 <br>
 ${ ui.includeFragment("uiframework", "helloUser", [ user: authenticatedUser ]) }
-${ ui.includeFragment("patientmodule", "encountersToday") }
+%{--${ ui.includeFragment("patientmodule", "encountersToday") }--}%
 <br>
 <br>
 <% if (context.authenticated) { %>
