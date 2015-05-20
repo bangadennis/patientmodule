@@ -1,8 +1,8 @@
-<table>
+
     <tr>
-        <th>${ ui.message("Patient.givenname") }</th>
-        <th>${ ui.message("Patient.middlename") }</th>
-        <th>${ ui.message("Patient.gender") }</th>
+        <th>${ ui.message("Given Name") }</th>
+        <th>${ ui.message("Middle") }</th>
+        <th>${ ui.message("Gender") }</th>
     </tr>
     <% if (patients) { %>
     <% patients.each { %>
