@@ -1,3 +1,4 @@
+<%--<openmrs:htmlInclude file="/moduleResources/patientmodule/css/bootstrap.min.css" />--%>
 <spring:htmlEscape defaultHtmlEscape="true" />
 <ul id="menu">
 	<li class="first"><a
@@ -24,6 +25,12 @@
 		<a
 				href="${pageContext.request.contextPath}/module/patientmodule/addpatient.form"><spring:message
 				code="Add Patient" /></a>
+	</li>
+	<li
+			<c:if test='<%= request.getRequestURI().contains("/register") %>'>class="active"</c:if>>
+		<a
+				href="${pageContext.request.contextPath}/module/patientmodule/register.form"><spring:message
+				code="Register Patient" /></a>
 	</li>
 	
 	<!-- Add further links here -->
