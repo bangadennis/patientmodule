@@ -34,6 +34,12 @@
                     <option value="F">Female</option>
                 </select>
                 <br/>
+                <label>Address:</label>:
+                <input type="text" class="form-control" name="address" value="" size="10" required />
+                City: <input type="text" class="form-control" name="city" value="" size="10" required />
+                Country: <input type="text" class="form-control" name="country" value="" size="10" required />
+                <br/>
+
 
                 <input type="submit" class="btn btn-success" value="Register">
         </form>

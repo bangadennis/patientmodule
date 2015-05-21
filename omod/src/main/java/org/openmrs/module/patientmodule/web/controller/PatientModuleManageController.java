@@ -142,7 +142,11 @@ public class  PatientModuleManageController {
 						@RequestParam(value = "middleName", required = true) String middleName,
 						@RequestParam(value = "dateofbirth", required = true) Date dateofbirth,
 						@RequestParam(value = "gender", required = true) String gender,
-                        @RequestParam(value = "nationalId", required = true) String nationalId)
+                        @RequestParam(value = "nationalId", required = true) String nationalId,
+								   @RequestParam(value = "address",required = true) String address,
+								   @RequestParam(value = "city", required = true) String city,
+								   @RequestParam(value = "country", required = true) String country
+								   )
     {
 		try {
 
