@@ -29,17 +29,18 @@
                 <input type="text" class="form-control" name="dateofbirth" value="" size="35" required />
                 <br/>
                 <label>Gender</label>
-                <select name="gender">
+                <select name="gender" class="form-control">
                     <option value="M">Male</option>
                     <option value="F">Female</option>
                 </select>
                 <br/>
-                <label>Address:</label>:
+                <label>Address</label>
                 <input type="text" class="form-control" name="address" value="" size="10" required />
-                City: <input type="text" class="form-control" name="city" value="" size="10" required />
-                Country: <input type="text" class="form-control" name="country" value="" size="10" required />
+                <label>City</label>
+                <input type="text" class="form-control" name="city" value="" size="10" required />
+               <label>Country</label>
+               <input type="text" class="form-control" name="country" value="" size="10" required />
                 <br/>
-
 
                 <input type="submit" class="btn btn-success" value="Register">
         </form>
