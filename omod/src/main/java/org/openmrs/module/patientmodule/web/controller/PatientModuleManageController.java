@@ -142,12 +142,10 @@ public class  PatientModuleManageController {
 						@RequestParam(value = "middleName", required = true) String middleName,
 						@RequestParam(value = "dateofbirth", required = true) Date dateofbirth,
 						@RequestParam(value = "gender", required = true) String gender,
-                        @RequestParam(value = "nationalId", required = true) String nationalId,
-								   @RequestParam(value = "address",required = true) String address,
+						@RequestParam(value = "nationalId", required = true) String nationalId,
+						@RequestParam(value = "address",required = true) String address,
 								   @RequestParam(value = "city", required = true) String city,
-								   @RequestParam(value = "country", required = true) String country
-								   )
-    {
+								   @RequestParam(value = "country", required = true) String country){
 		try {
 
 			//creating the services
@@ -167,13 +165,20 @@ public class  PatientModuleManageController {
 			patient.setGender(gender);
 			patient.setBirthdate(dateofbirth);
 
+			//Address and location
+			PersonAddress personAddress=new PersonAddress();
+			personAddress.setAddress1(address);
+			personAddress.setCityVillage(city);
+			personAddress.setCountry(country);
+			patient.addAddress(personAddress);
+
 			//create a patient Identifer
 			PatientIdentifier openmrsId = new PatientIdentifier();
 
-            String TARGET_ID_KEY = "patientmodule.idType";
-            String TARGET_ID = Context.getAdministrationService().getGlobalProperty(TARGET_ID_KEY);
+//            String TARGET_ID_KEY = "patientmodule.idType";
+//            String TARGET_ID = Context.getAdministrationService().getGlobalProperty(TARGET_ID_KEY);
 
-			PatientIdentifierType patientIdentifierType = patientService.getPatientIdentifierTypeByName(TARGET_ID);
+			PatientIdentifierType patientIdentifierType = patientService.getPatientIdentifierTypeByUuid("8d79403a-c2cc-11de-8d13-0010c6dffd0f");
 
             openmrsId.setIdentifier(nationalId);
             openmrsId.setDateCreated(new Date());
