@@ -23,6 +23,7 @@ import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.module.idgen.service.IdentifierSourceService;
 import org.openmrs.module.patientmodule.PatientModule;
 import org.openmrs.module.patientmodule.api.PatientModuleService;
+import org.openmrs.module.patientmodule.usermethod.ConvertStringToDate;
 import org.openmrs.validator.PatientIdentifierValidator;
 import org.openmrs.web.WebConstants;
 import org.springframework.stereotype.Controller;
@@ -97,57 +98,61 @@ public class  PatientModuleManageController {
 	}
 
 	//method for Editing a patient
-	@RequestMapping(value = "/module/patientmodule/addedit.form", method=RequestMethod.POST)
-	public String  edit(ModelMap model, WebRequest webRequest, HttpSession httpSession,
-						  @RequestParam(value = "patientId", required = true) Integer patientId,
-						@RequestParam(value = "lname", required = true) String fname,
-						@RequestParam(value = "middleName", required = true) String middleName,
-						@RequestParam(value = "age", required = true) Date dob,
-						@RequestParam(value = "gender", required = true) String gender) {
-		try {
-
-			Patient patient = Context.getPatientService().getPatient(patientId);
-			PersonName personName=new PersonName();
-			//Removing Person Name
-			patient.removeName(patient.getPersonName());
-			//Add a new personName
-			personName.setGivenName(fname);
-			personName.setFamilyName(middleName);
-			patient.addName(personName);
-			patient.setGender(gender);
-			patient.setBirthdate(dob);
-			Context.getPatientService().savePatient(patient);
-			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Edited Successfully");
-			return "redirect:manage.form";
-		}
-		catch (Exception ex)
-		{
-			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Edit failed");
-			return "redirect:manage.form";
-
-		}
-
-		//return "redirect:manage.form";
-	}
+//	@RequestMapping(value = "/module/patientmodule/addedit.form", method=RequestMethod.POST)
+//	public String  edit(ModelMap model, WebRequest webRequest, HttpSession httpSession,
+//						  @RequestParam(value = "patientId", required = true) Integer patientId,
+//						@RequestParam(value = "lname", required = true) String fname,
+//						@RequestParam(value = "middleName", required = true) String middleName,
+//						@RequestParam(value = "age", required = true) Date dob,
+//						@RequestParam(value = "gender", required = true) String gender) {
+//		try {
+//
+//			Patient patient = Context.getPatientService().getPatient(patientId);
+//			PersonName personName=new PersonName();
+//			//Removing Person Name
+//			patient.removeName(patient.getPersonName());
+//			//Add a new personName
+//			personName.setGivenName(fname);
+//			personName.setFamilyName(middleName);
+//			patient.addName(personName);
+//			patient.setGender(gender);
+//			patient.setBirthdate(dob);
+//			Context.getPatientService().savePatient(patient);
+//			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Edited Successfully");
+//			return "redirect:manage.form";
+//		}
+//		catch (Exception ex)
+//		{
+//			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Edit failed");
+//			return "redirect:manage.form";
+//
+//		}
+//
+//		//return "redirect:manage.form";
+//	}
 
 	@RequestMapping(value = "/module/patientmodule/register.form", method=RequestMethod.GET)
 	public void registerform(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
 	}
+
+
 	//method for adding a patient
 	@RequestMapping(value = "/module/patientmodule/registerpatient.form", method=RequestMethod.POST)
 	public String  registerpatient(ModelMap model, WebRequest webRequest, HttpSession httpSession,
-						@RequestParam(value = "givenName", required = true) String givenName,
-						@RequestParam(value = "familyName", required = true) String familyName,
-						@RequestParam(value = "middleName", required = true) String middleName,
-						@RequestParam(value = "dateofbirth", required = true) Date dateofbirth,
-						@RequestParam(value = "gender", required = true) String gender,
-						@RequestParam(value = "nationalId", required = true) String nationalId,
-						@RequestParam(value = "address",required = true) String address,
-								   @RequestParam(value = "city", required = true) String city,
-								   @RequestParam(value = "country", required = true) String country){
+                                   @RequestParam(value = "givenName", required = true) String givenName,
+                                   @RequestParam(value = "familyName", required = true) String familyName,
+                                   @RequestParam(value = "middleName", required = false) String middleName,
+                                   @RequestParam(value = "dateofbirth", required = true) String dateofbirth,
+                                   @RequestParam(value = "gender", required = true) String gender,
+                                   @RequestParam(value = "nationalId", required = true) String nationalId,
+                                   @RequestParam(value = "address",required = false) String address,
+                                   @RequestParam(value = "city", required = true) String city,
+								   @RequestParam(value = "postalcode", required = false) String postalcode,
+								   @RequestParam(value = "country", required = true) String country
+    )
+    {
 		try {
-
 			//creating the services
 			PatientService patientService=Context.getPatientService();
 			PersonService personService=Context.getPersonService();
@@ -163,12 +168,15 @@ public class  PatientModuleManageController {
 			patient.addName(personName);
 
 			patient.setGender(gender);
-			patient.setBirthdate(dateofbirth);
+            ConvertStringToDate convertStringToDate=new ConvertStringToDate();
+            Date birthdate=convertStringToDate.convert(dateofbirth);
+			patient.setBirthdate(birthdate);
 
 			//Address and location
 			PersonAddress personAddress=new PersonAddress();
 			personAddress.setAddress1(address);
 			personAddress.setCityVillage(city);
+            personAddress.setPostalCode(postalcode);
 			personAddress.setCountry(country);
 			patient.addAddress(personAddress);
 
@@ -203,9 +211,68 @@ public class  PatientModuleManageController {
 
 		}
 
-		//return "redirect:manage.form";
 	}
 
+
+
+    //method for adding a patient
+    @RequestMapping(value = "/module/patientmodule/addedit.form", method=RequestMethod.POST)
+    public String  editpatient(ModelMap model, WebRequest webRequest, HttpSession httpSession,
+                                   @RequestParam(value = "givenName", required = true) String givenName,
+                                   @RequestParam(value = "familyName", required = true) String familyName,
+                                   @RequestParam(value = "middleName", required = false) String middleName,
+                                   @RequestParam(value = "dateofbirth", required = true) String dateofbirth,
+                                   @RequestParam(value = "gender", required = true) String gender,
+                                   @RequestParam(value = "patientId", required = true) Integer patientId,
+                                   @RequestParam(value = "address",required = false) String address,
+                                   @RequestParam(value = "city", required = true) String city,
+                                   @RequestParam(value = "postalcode", required = false) String postalcode,
+                                   @RequestParam(value = "country", required = true) String country
+    )
+    {
+        try {
+            //creating the services
+            PatientService patientService=Context.getPatientService();
+
+            Patient patient = patientService.getPatient(patientId);
+     		PersonName personName=new PersonName();
+//          Removing Person Name
+			patient.removeName(patient.getPersonName());
+
+            //adding the names
+            personName.setGivenName(givenName);
+            personName.setFamilyName(familyName);
+            personName.setMiddleName(middleName);
+
+            patient.addName(personName);
+
+            patient.setGender(gender);
+            ConvertStringToDate convertStringToDate=new ConvertStringToDate();
+            Date birthdate=convertStringToDate.convert(dateofbirth);
+            patient.setBirthdate(birthdate);
+
+            //Address and location
+            PersonAddress personAddress=new PersonAddress();
+            personAddress.setAddress1(address);
+            personAddress.setCityVillage(city);
+            personAddress.setPostalCode(postalcode);
+            personAddress.setCountry(country);
+            patient.addAddress(personAddress);
+
+            //saving the patient
+            patientService.savePatient(patient);
+
+            httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Edited Successfully");
+            return "redirect:manage.form";
+        }
+        catch (Exception ex)
+        {
+            httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Edit failed");
+            return "redirect:manage.form";
+
+        }
+
+    }
 
 
 
