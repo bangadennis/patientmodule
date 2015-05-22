@@ -35,6 +35,3 @@
 	
 	<!-- Add further links here -->
 </ul>
-<h4>
-	<spring:message code="Patient's Kin" />
-</h4>
