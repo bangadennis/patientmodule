@@ -1,48 +1,68 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <%@ include file="template/localHeader.jsp"%>
-<p>Hello, ${user.systemId}!</p>
 <div class="row">
-    <div class="jumbotron col-md-4 col-md-offset-4">
+    <div class="jumbotron col-md-8 col-md-offset-2">
         <h2 class="text-center">Registration</h2>
         <div class="form-group col-md-offset-2 col-md-8">
-            <form class="" method="post"  action="<c:url value='/module/patientmodule/registerpatient.form' />">
+            <form class="form-horizontal" method="post"  action="<c:url value='/module/patientmodule/registerpatient.form' />">
+                <div class="row">
+                    <label>Name</label><br/>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="givenName" placeholder="Given Name" value="" size="30" required />
+                    </div>
 
-                <label>National ID</label>
-                <br>
-                <input type="text" class="form-control" name="nationalId" value="" size="12" required />
-                <br/>
-                <label>First Name</label>
-                <br>
-                <input type="text" class="form-control" name="givenName" value="" size="35" required />
-                <br>
-                <label>Middle Name</label>
-                <br>
-                <input type="text" class="form-control" name="middleName" value="" size="35" required />
-                <br>
-                <label>Family Name</label>
-                <br>
-                <input type="text" class="form-control" name="familyName" value="" size="35" required />
-                <br/>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="middleName"  placeholder="Middle Name" value="" size="25" required />
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="familyName" placeholder="Family Name" value="" size="30" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>National ID</label>
+                    <input type="number" class="form-control" name="nationalId" value="" size="12" maxlength="8" required />
+                </div>
+
+                <div class="form-group">
                 <label>Date of Birth</label>
-                <br>
-                <input type="text" class="form-control" name="dateofbirth" value="" size="35" required />
-                <br/>
-                <label>Gender</label>
-                <select name="gender" class="form-control">
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
-                </select>
-                <br/>
-                <label>Address</label>
-                <input type="text" class="form-control" name="address" value="" size="10" required />
-                <label>City</label>
-                <input type="text" class="form-control" name="city" value="" size="10" required />
-               <label>Country</label>
-               <input type="text" class="form-control" name="country" value="" size="10" required />
-                <br/>
+                <input type="date" class="form-control" name="dateofbirth" value="" size="35" required />
+                </div>
 
-                <input type="submit" class="btn btn-success" value="Register">
+                <div class="form-group " >
+                    <label>Gender</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="gender"  value="M"> Male
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="gender"  value="F"> Female
+                    </label>
+                </div>
+                <div class="row">
+                    <label>Personal Address</label><br>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" name="address" placeholder="Address" value="" size="30" required />
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" name="city" placeholder="City" value="" size="25" required />
+                        </div>
+
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" name="postalcode" placeholder="Postal Code" value="" size="30" required />
+                        </div>
+
+                </div>
+
+                <div class="form-group">
+                   <label>Country</label>
+                   <input type="text" class="form-control" name="country" value="" size="10" maxlength="40" required />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Register</button>
+                </div>
+
         </form>
     </div>
 
