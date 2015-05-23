@@ -14,9 +14,15 @@ public class ConvertStringToDate {
 
         public Date convert(String dateInString) throws ParseException {
 
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+
+            if(dateInString.contains("-"))
+            {
+                dateInString=dateInString.replaceAll("-", "/");
+            }
 
             Date date = null;
+
             if (dateInString != "") {
                 if (dateInString.contains("/")) {
 
