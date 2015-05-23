@@ -28,7 +28,7 @@
 
                 <div class="form-group">
                     <label>Date of Birth</label>
-                    <input type="text" class="form-control" name="dateofbirth" value="${patient.birthdate}" size="35" required />
+                    <input type="datetime" class="form-control" name="dateofbirth" value="${patient.birthdate}" size="35" required />
                 </div>
 
                 <div class="form-group">
