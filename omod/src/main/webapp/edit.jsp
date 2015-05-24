@@ -33,12 +33,11 @@
 
                 <div class="form-group">
                     <label>Gender</label>
-                    <label class="radio-inline">
-                        <input type="radio" name="gender"  value="M"> Male
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="gender"  value="F"> Female
-                    </label>
+                    <select name="gender" class="form-control">
+                        <option value="${patient.gender}">${patient.gender}</option>
+                        <option value="M">Male(M)</option>
+                        <option value="F">Female(F)</option>
+                    </select>
                 </div>
                 <div class="row">
                     <label>Personal Address</label><br>
